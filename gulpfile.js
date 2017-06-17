@@ -15,9 +15,14 @@ gulp.task('default', ['browser-sync'], function() {});
 //set gulp task - browser-sync
 gulp.task('browser-sync', ['nodemon'], function() {
   browserSync.init(null, {
+    //Set proxy-server ip; point to the port address in ./bin/www
+    //now gulp and node http-server can run in harmony
     proxy: "http://localhost:3000",
+    //files to watch
     files: ["public/**/*.*"],
+    //set default browser (leave blank)
     browser: "",
+    //set browser-sync port
     port: 4000,
   });
 });
@@ -25,7 +30,7 @@ gulp.task('browser-sync', ['nodemon'], function() {
 gulp.task('nodemon', function(cb) {
   var started = false;
   return nodemon({
-    //script: 'app.js'
+    //Start script
     script: './bin/www'
   }).on('start', function() {
     // to avoid nodemon being started multiple times
