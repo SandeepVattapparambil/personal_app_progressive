@@ -1,30 +1,38 @@
-/**********Gulp Cconfiguration file*************/
-//create a gulp instance
+/*
+Sandeep Vattapparambil
+sandeepv68@gmail.com
+*/
+//Gulp Configuration
+'use strict';
+//require gulp module
 var gulp = require('gulp');
-//create a browser sync instance.
-var bs = require('browser-sync').create();
-//create an instance of browsersync reload method
-var reload = bs.reload;
-
-gulp.task('browser-sync', function() {
-    bs.init({
-        server: {
-            baseDir: "./"
-        }
-    });
+//require browser-sync module
+var browserSync = require('browser-sync');
+//require nodemon module
+var nodemon = require('gulp-nodemon');
+//set gulp task - default
+gulp.task('default', ['browser-sync'], function() {});
+//set gulp task - browser-sync
+gulp.task('browser-sync', ['nodemon'], function() {
+  browserSync.init(null, {
+    proxy: "http://localhost:3000",
+    files: ["public/**/*.*"],
+    browser: "",
+    port: 4000,
+  });
 });
-
-// Watch files for changes
-gulp.task('watch', ['browser-sync'], function() {
-    // Watch HTML files
-    gulp.watch('*.html', reload);
-    // Watch css files
-    gulp.watch('assets/css/*', reload);
-    // Watch JS files
-    gulp.watch('assets/js/*', reload);
-    gulp.watch('assets/js/pages/*', reload);
-    // Watch image files
-    gulp.watch('assets/images/*', reload);
+//set gulp task - nodemon
+gulp.task('nodemon', function(cb) {
+  var started = false;
+  return nodemon({
+    //script: 'app.js'
+    script: './bin/www'
+  }).on('start', function() {
+    // to avoid nodemon being started multiple times
+    // thanks @matthisk
+    if (!started) {
+      cb();
+      started = true;
+    }
+  });
 });
-// Default task
-gulp.task('default', ['watch', 'browser-sync']);
