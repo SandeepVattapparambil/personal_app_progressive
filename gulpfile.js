@@ -25,6 +25,9 @@ gulp.task('browser-sync', ['nodemon'], function() {
     //set browser-sync port
     port: 4000,
   });
+  //Custom watch on views and routes
+  gulp.watch('views/*.*', browserSync.reload);
+  gulp.watch('routes/*.*', browserSync.reload);
 });
 //set gulp task - nodemon
 gulp.task('nodemon', function(cb) {
