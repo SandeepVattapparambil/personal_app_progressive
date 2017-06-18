@@ -11,14 +11,17 @@ function detectmob() {
     navigator.userAgent.match(/BlackBerry/i) ||
     navigator.userAgent.match(/Windows Phone/i)
   ) {
-    console.log('Mobile detected');
     return true;
   } else {
-    console.log('Desktop detected');
     return false;
   }
 }
-NProgress.start();
+var device = detectmob();
+if (!device) {
+  console.log('Desktop detected');
+  NProgress.start();
+}
+
 //jquery
 $(document).ready(function() {
   detectmob();
