@@ -13,13 +13,19 @@
   <link href="../stylesheets/materialdesignicons.css" media="all" rel="stylesheet" type="text/css" />
   <!--Import NProgress stylesheet-->
   <link href="../stylesheets/nprogress.css" media="all" rel="stylesheet" type="text/css" />
+  <!--Import custom stylesheet-->
+  <link type="text/css" rel="stylesheet" href="../stylesheets/style.css" media="screen,projection" />
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!--Set Android theme color-->
   <meta name="theme-color" content="#c0ca33">
 </head>
 
-<body>
+<body class="grey lighten-3">
+  <div class="overlay">
+    <div><img class="circle responsive-img z-depth-4" width="80" src="../images/logo.png"></div>
+  </div>
+
   <nav class="lime">
     <div class="nav-wrapper">
       <a href="#!" class="brand-logo">&nbsp;<%= logo %></a>
@@ -39,10 +45,7 @@
     </div>
   </nav>
 
-  <h1 class="lime-text"><%= title %></h1>
-  <p class="grey-text darken-4">Welcome to
-    <%= title %>
-  </p>
+  <p class="center"><img class="circle responsive-img z-depth-4" width="180" src="../images/logo.png">  </p>
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="../javascripts/materialize.js"></script>

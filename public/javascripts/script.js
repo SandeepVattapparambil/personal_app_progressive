@@ -20,11 +20,18 @@ var device = detectmob();
 if (!device) {
   console.log('Desktop detected');
   NProgress.start();
+} else {
+  console.log('Mobile detected');
 }
 
 //jquery
 $(document).ready(function() {
   detectmob();
   NProgress.done();
+  // on load finished
+  $(window).load(function() {
+    // select element and fade it out
+    $('.overlay').fadeOut();
+  });
   $(".button-collapse").sideNav();
 });
